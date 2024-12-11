@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.d {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.contentContainer {
+    height: 550px;
+    width: 550px;
+    background-color: rgb(11, 11, 11);
+    border-radius: 10px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    padding: 60px 0;
+}
+
+.contentContainer h1 {
+    text-align: center;
+    font-size: 1.8em;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.contentContainer p {
+    text-align: center;
+    font-size: 0.9em;
+    color: gray;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 2%;
+}
+
+.contentContainer input {
+    width: 400px;
+    height: 40px;
+    border-radius: 5px;
+    margin-top: 8%;
+    padding-left: 10px;
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    outline: none;
+    border-radius: 10px;
+}
+
+.resetBtn {
+    width: 400px;
+    height: 40px;
+    background-color: rgb(34, 151, 83);
+    border-radius: 5px;
+    margin-top: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.3em;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.ifield {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10% 0;
+}
+
+
+.ifield p {
+    margin-top: 8%;
+    width: 80%;
+    text-align: center;
+    border-bottom: 1px solid gray;
+    line-height: 0.1em;
+    color: white;
+
+}
+
+@media (max-width:590px) {
+    .contentContainer {
+        width: 80vw;
+        height: 60vh;
+    }
+
+    .ifield input,
+    .resetBtn {
+        width: 60vw;
+        margin-top: 15%;
+    }
+}
