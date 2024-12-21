@@ -70,39 +70,37 @@ export default function Signup() {
         });
     }
     const validatesignup = () => {
-        if (inputRef1.current.value == '') {
-            inputRef1.current.focus()
-            notifyWarning("Please enter your user name")
-            return false
+        if (inputRef1.current.value === '') {
+            inputRef1.current.focus();
+            notifyWarning("Please enter your user name");
+            return false;
         }
-        else if (inputRef2.current.value == '') {
-            inputRef2.current.focus()
-            notifyWarning("Please enter your email")
-            return false
-        }
+        else if (inputRef2.current.value === '') {
+            inputRef2.current.focus();
+            notifyWarning("Please enter your email");
+            return false;
+        } 
         else if (!validator.isEmail(inputRef2.current.value)) {
             inputRef2.current.focus();
             notifyWarning("Please enter a valid email address");
             return false;
         }
-        else if (inputRef3.current.value == '') {
-            inputRef3.current.focus()
-            notifyWarning("Please enter your password")
-            return false
+        else if (inputRef3.current.value === '') {
+            inputRef3.current.focus();
+            notifyWarning("Please enter your password");
+            return false;
         } else if (!inputRef4.current.checked) {
-            inputRef4.current.focus()
-            notifyWarning("Please accept our terms and condition")
+            inputRef4.current.focus();
+            notifyWarning("Please accept our terms and condition");
             return false;
         } 
-        if(!isPasswordValid(inputRef3.current.value)){
-            notifyWarning("Please enter strong password");
+        if (!isPasswordValid(inputRef3.current.value)) {
+            notifyWarning("Please enter a strong password");
             return false;
         }
-
-        return true
+        return true;
     };
-
-
+    
 
     const handleSignup = () => {
         if (validatesignup()) {
@@ -171,7 +169,7 @@ export default function Signup() {
                         </div>
                         <div className={styles.ifield1}>
                             <p>Email address</p>
-                            <input ref={inputRef2} type="email" placeholder='xyz@gmail.com' value={inputemail}
+                            <input ref={inputRef2} type="text" placeholder='xyz@gmail.com' value={inputemail}
                                 onChange={(e) => {
                                     setEmail(e.target.value);
                                 }} />
@@ -195,6 +193,7 @@ export default function Signup() {
                         <div className={styles.passwordConstraints}>
                             <p>Password must contain a minimum 8 characters</p>
                             <p>Password must contain at least one symbol e.g @,!</p>
+                            <p>Password must contain at least one numeric character</p>
                         </div>
                         <div className={styles.btn11} onClick={handleSignup}>
                             <p>
