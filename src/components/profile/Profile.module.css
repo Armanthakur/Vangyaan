@@ -1,88 +1,274 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+:root {
+    --primary-color: rgb(0, 130, 130);
+    --secondary-color: lightgray;
+    --hover-primary: rgb(0, 110, 110);
+    --error-color: red;
+    --font-family: "Poppins", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: #f5f5f5;
+}
 
 .parent {
-    /* height: 100vh; */
     width: 100%;
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .Profile {
-    height: 750px;
-    width: 500px;
+    height: auto;
+    max-width: 500px;
+    width: 100%;
     box-shadow: 0px 0px 10px 5px #cecece;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 20px;
     margin: 50px 0;
+    position: relative;
+    background-color: white;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Slight hover effect on whole profile block */
+.Profile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .imgSection {
     height: 200px;
     width: 100%;
-    background-color: rgb(0, 130, 130);
+    background-color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 20px 20px 0px 0px;
-}
-
-.imgSection h1 {
     position: relative;
-    left: 57%;
-    top: -35%;
-    color: white;
-    font-family: "Poppins", sans-serif;
-    font-weight: 450;
-    font-style: normal;
-    cursor: pointer;
 }
 
+/* Hide profile options initially */
+.imgSection .profileOptions {
+    display: none;
+    position: absolute;
+    bottom: -50px;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 10;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Show profile options only when image is hovered */
+.imgSection img:hover + .profileOptions {
+    display: flex;
+    bottom: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Profile image styling */
 .imgSection img {
     height: 150px;
     width: 150px;
     background-color: white;
-    border-radius: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Hover effect directly on profile image */
+.imgSection img:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Profile option buttons styling */
+.profileOptions button {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.profileOptions button:hover {
+    background-color: var(--hover-primary);
+    transform: translateY(-2px);
+}
+
+/* User information styling */
 .userInfo {
-    height: 650px;
     width: 92%;
-    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     border-radius: 0px 0px 20px 20px;
 }
 
 .field {
-    margin: 15px 10px;
-
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .field h1 {
     color: gray;
-    font-family: "Poppins", sans-serif;
     font-weight: 400;
-    font-style: normal;
-    display:flex;
+    font-size: 14px;
 }
 
-.field input {
+.field input,
+.field select {
     outline: none;
     width: 100%;
-    padding: 5px 5px;
+    padding: 8px;
+    border: none;
     border-bottom: 1px solid rgb(222, 222, 222);
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-family);
     font-weight: 500;
-    font-style: normal;
-    /* margin: 0px 0; */
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    background-color: transparent;
+    appearance: none;
 }
 
-.choice {
+.field input:focus,
+.field select:focus {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.field input::placeholder {
+    color: lightgray;
+    font-weight: 400;
+}
+
+.saveButton {
+    margin-top: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.saveButton:hover {
+    background-color: var(--hover-primary);
+    transform: translateY(-2px);
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modalContent {
     background-color: white;
-    outline: none;
-    width: 90%;
-    padding: 5px 5px;
-    border-bottom: 1px solid rgb(222, 222, 222);
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modalButton {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modalButton:hover {
+    background-color: var(--hover-primary);
+    transform: translateY(-2px);
+}
+
+.modalClose {
+    background-color: var(--secondary-color);
+    color: black;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modalClose:hover {
+    background-color: darkgray;
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .Profile {
+        width: 90%;
+        margin: 20px 0;
+    }
+
+    .field h1 {
+        font-size: 12px;
+    }
+
+    .modalContent {
+        width: 90%;
+    }
 }
