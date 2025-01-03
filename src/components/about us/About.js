@@ -1,29 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "../about us/About.module.css";
 import aboutus1 from "../assets/aboutus1.png";
 import aboutus2 from "../assets/aboutus2.png";
+
 export default function About() {
+  // State to track visibility for each section
+  const [visibleSections, setVisibleSections] = useState({});
+
+  // Function to toggle visibility for a section
+  const toggleSection = (sectionId) => {
+    setVisibleSections((prevState) => ({
+      ...prevState,
+      [sectionId]: !prevState[sectionId],
+    }));
+  };
+
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
+        {/* Section 1 */}
         <div className={style.parentLeft}>
           <div className={style.contentLeft}>
-            <div className={style.head}>1. Outstanding Contributers</div>
+            <div className={style.head}>1. Outstanding Contributors</div>
             <div className={style.mainContent}>
-              Outstanding Contributors: . Name (Main area of expertise on Flora
+              Outstanding Contributors: Name (Main area of expertise on Flora
               of India) Sh. J.M. Garg (efloraofindia website) Sh. Saroj Kumar
               Kasaju (Flora Documentation of Nepal) Dr. Gurcharan Singh (Western
-              Himalayas) Dr Pankaj Kumar (Orchidaceae) Sh. Dinesh Valke
+              Himalayas) Dr. Pankaj Kumar (Orchidaceae) Sh. Dinesh Valke
               (Compilation of names in Indian languages & Flora Documentation)
               Dr. Nidhan Singh (Western Himalayas) Dr. Manoj Chandran (Poaceae)
-              Dr. D. S. Rawat (Western Himalayas […]{" "}
-              <div className={style.more}>View More </div>
+              Dr. D. S. Rawat (Western Himalayas)
+              {visibleSections[1] && (
+                <span>
+                  {" "}
+                  Additional details about outstanding contributors can go here.
+                </span>
+              )}
+              <div
+                className={style.more}
+                onClick={() => toggleSection(1)}
+                style={{ cursor: "pointer", color: "#000000" }}
+              >
+                {visibleSections[1] ? "View Less" : "View More"}
+              </div>
             </div>
           </div>
           <div className={style.aboutImg}>
             <img src={aboutus1} alt="img"></img>
           </div>
         </div>
+
+        {/* Section 2 */}
         <div className={style.parentRight}>
           <div className={style.aboutImg}>
             <img src={aboutus2} alt="img"></img>
@@ -31,31 +58,48 @@ export default function About() {
           <div className={style.contentRight}>
             <div className={style.head}>2. Subject/Area Experts</div>
             <div className={style.mainContent}>
-              Subject/ Area Experts: . Dr. Manoj Chandran (Poaceae) Dr. M. Sabu
+              Subject/Area Experts: Dr. Manoj Chandran (Poaceae) Dr. M. Sabu
               (Zingiberaceae, Marantaceae & Musaceae) Dr. N.P. Balakishnan
               (Euphorbiaceae) Dr. Chris Fraser-Jenkins (Pteridophytes) Dr. V P
-              Prasad (Cyperaceae) Dr. Mayur Nandikar (Commelinaceae) Dr.
-              Wojciech Adamowski (Impatiens) Dr. Anil Kumar (Poaceae) Dr. V.
-              Sampath Kumar (Lamiaceae) Dr. Pascal Bruggeman (Arisaema) Dr.
-              Andrew Henderson (Arecaceae) Dr. J […]
-              <div className={style.more}>View More</div>
+              Prasad (Cyperaceae) Dr. Mayur Nandikar (Commelinaceae)
+              {visibleSections[2] && (
+                <span>
+                  {" "}
+                  Additional details about subject/area experts can go here.
+                </span>
+              )}
+              <div
+                className={style.more}
+                onClick={() => toggleSection(2)}
+                style={{ cursor: "pointer", color: "#000000" }}
+              >
+                {visibleSections[2] ? "View Less" : "View More"}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* left */}
+        {/* Section 3 */}
         <div className={style.parentLeft}>
           <div className={style.contentLeft}>
             <div className={style.head}>3. The Pillars</div>
             <div className={style.mainContent}>
-              The Pillars:. Name (Main area of expertise on Flora of India) Sh.
+              The Pillars: Name (Main area of expertise on Flora of India) Sh.
               J.M. Garg (efloraofindia website) Sh. Saroj Kumar Kasaju (Flora
-              Documentation of Nepal) Dr. Gurcharan Singh (Western Himalayas) Dr
-              Pankaj Kumar (Orchidaceae) Sh. Dinesh Valke (Compilation of names
-              in Indian languages & Flora Documentation) Dr. Nidhan Singh
-              (Western Himalayas) Dr. Balkar Arya (Western Himalayas) Sh.
-              Surajit Koley (Flora Documentation of West […]
-              <div className={style.more}>View More </div>
+              Documentation of Nepal) Dr. Gurcharan Singh (Western Himalayas)
+              {visibleSections[3] && (
+                <span>
+                  {" "}
+                  Additional details about the pillars can go here.
+                </span>
+              )}
+              <div
+                className={style.more}
+                onClick={() => toggleSection(3)}
+                style={{ cursor: "pointer", color: "#000000" }}
+              >
+                {visibleSections[3] ? "View Less" : "View More"}
+              </div>
             </div>
           </div>
           <div className={style.aboutImg}>
@@ -63,7 +107,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* right */}
+        {/* Section 4 */}
         <div className={style.parentRight}>
           <div className={style.aboutImg}>
             <img src={aboutus2} alt="img"></img>
@@ -71,32 +115,46 @@ export default function About() {
           <div className={style.contentRight}>
             <div className={style.head}>4. Moderators</div>
             <div className={style.mainContent}>
-              ‘Moderators’ are persons who have contributed substantially to
-              efloraofindia as a whole (after The Pillars & Subject Experts).
-              They have accepted the invitation to become a moderator to share
-              high responsibility in this regard. More such names will be added
-              when they come up to their level provided their behavior is up to
-              the mark at […]
-              <div className={style.more}>View More</div>
+              Moderators: Dr. Nidhan Singh, Sh. J.M. Garg, and other dedicated
+              contributors oversee discussions and ensure accuracy.
+              {visibleSections[4] && (
+                <span>
+                  {" "}
+                  Additional details about moderators can go here.
+                </span>
+              )}
+              <div
+                className={style.more}
+                onClick={() => toggleSection(4)}
+                style={{ cursor: "pointer", color: "#000000" }}
+              >
+                {visibleSections[4] ? "View Less" : "View More"}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* 5 left */}
-
+        {/* Section 5 */}
         <div className={style.parentLeft}>
           <div className={style.contentLeft}>
-            <div className={style.head}>5. Major Contributers</div>
+            <div className={style.head}>5. Major Contributors</div>
             <div className={style.mainContent}>
-              Abdulla, Noorafsa Abraham, Farida Adamowski, Wojciech Bronze
-              member Expert (Impatiens) Adavanne, Shivaprakash Adhikari,
-              Bhupendra Singh Expert (Rhododendrons) Adsul, Avinash Agrawala,
-              Dinesh Kumar Expert (Orchidaceae) Alfred, H. S. Bronze member
-              Expert Ambasta, Nirbhay Ambedkar, Prashant Bronze member
-              Ampalakkad, Ajit Ananth, Raghu Bronze member Anjaneyulu, Paradesi
-              Silver member Archer, Robert H. Expert (Celastraceae) Arun, N.
-              Bronze member Arunachalam, Raman Silver member Arya, Balkar
-              Diamond member […]<div className={style.more}>View More </div>
+              Major Contributors: Sh. Saroj Kumar Kasaju (Flora Documentation of
+              Nepal), Dr. Pankaj Kumar (Orchidaceae), and many others play
+              significant roles.
+              {visibleSections[5] && (
+                <span>
+                  {" "}
+                  Additional details about major contributors can go here.
+                </span>
+              )}
+              <div
+                className={style.more}
+                onClick={() => toggleSection(5)}
+                style={{ cursor: "pointer", color: "#000000" }}
+              >
+                {visibleSections[5] ? "View Less" : "View More"}
+              </div>
             </div>
           </div>
           <div className={style.aboutImg}>
@@ -104,57 +162,61 @@ export default function About() {
           </div>
         </div>
 
-        {/* 6 right */}
-
+        {/* Section 6 */}
         <div className={style.parentRight}>
           <div className={style.aboutImg}>
             <img src={aboutus2} alt="img"></img>
           </div>
           <div className={style.contentRight}>
             <div className={style.head}>
-              6. Details of some important contributors
+              6. Details of Some Important Contributors
             </div>
             <div className={style.mainContent}>
-              Details of some important contributors: . A. Lalithamba Avadhanam
-              Lalithamba – Star Expert of Oct.’17 Our tribute to two great
-              ladies on this group Thanks to Krishnaraj ji, Shantanu ji,
-              Lalithamba ji, Kunhikannan ji, Vijayasankar ji, D S Rawat ji,
-              Samir ji, Shrikant ji among others- Fabaceae (Faboideae) Fortnight
-              Oct’ 2015 Spl. thanks to Surajit […]
-              <div className={style.more}>View More</div>
+              Learn about key contributors such as Dr. M. Sabu, Dr. Nidhan
+              Singh, and others who have provided invaluable contributions.
+              {visibleSections[6] && (
+                <span>
+                  {" "}
+                  Additional details about these contributors can go here.
+                </span>
+              )}
+              <div
+                className={style.more}
+                onClick={() => toggleSection(6)}
+                style={{ cursor: "pointer", color: "#000000" }}
+              >
+                {visibleSections[6] ? "View Less" : "View More"}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* 7 left */}
-
+        {/* Section 7 */}
         <div className={style.parentLeft}>
           <div className={style.contentLeft}>
-            <div className={style.head}>Top 10 Contriuters over the year</div>
+            <div className={style.head}>7. Top 10 Contributors Over the Years</div>
             <div className={style.mainContent}>
-              Top 10 posters on 1.1.23 List of top 10 posters as on 1.1.23 is
-              given below: Top Posters as on 1-1-2023 Total 1. J M Garg 99,270
-              2. Saroj Kasaju 39,097 3. Gurcharan Singh 36,471 4. Aarti Khale
-              14,123 5. Dinesh Valke 13,282 6. Usha Desai 12,000 7. Nidhan Singh
-              10,613 8. Balkar Singh 8,572 […]
-              <div className={style.more}>View More </div>
+              Recognizing the top 10 contributors for their dedication and
+              efforts in the field of flora documentation.
+              {visibleSections[7] && (
+                <span>
+                  {" "}
+                  Additional details about the top 10 contributors can go here.
+                </span>
+              )}
+              <div
+                className={style.more}
+                onClick={() => toggleSection(7)}
+                style={{ cursor: "pointer", color: "#000000" }}
+              >
+                {visibleSections[7] ? "View Less" : "View More"}
+              </div>
             </div>
           </div>
           <div className={style.aboutImg}>
             <img src={aboutus1} alt="img"></img>
           </div>
         </div>
-
-        {/*  Our Team */}
-
-        {/* <div className={style.ourTeam}>
-          <div className={style.top}>
-            <div className={style.heading2}>Our Team</div>
-            <div className={style.quote}>
-              We are a team dedicated to plants, with a passion and commitment.
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );

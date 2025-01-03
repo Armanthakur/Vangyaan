@@ -4,26 +4,30 @@ import { Link } from 'react-router-dom'
 import { gql, useLazyQuery } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../services/AuthContext.js';
-import img from './t1.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import validator from 'validator'
+import img from './t1.png'
+
 
 export default function Signup() {
     const [inputname, setName] = useState("");
     const [inputpassword, setPassword] = useState("");
     const [inputemail, setEmail] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+  
     const navigate = useNavigate();
     const inputRef1 = useRef(null);
     const inputRef2 = useRef(null);
     const inputRef3 = useRef(null);
     const inputRef4 = useRef(null);
-    const [signup, setsignup] = useState(false)
-    const [errorMessage, setErrorMessage] = useState('') 
+
+    const [signup, setsignup] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const [colorState, setColor] = useState('red');
 
     const notifyError = (msg) => {
-        toast.error(`${msg}!`, {
+        toast.error(${msg}!, {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -34,7 +38,7 @@ export default function Signup() {
             theme: "dark",
             containerId: 'Error'
         });
-    }
+    };
     const notifyWarning = (msg) => {
         toast.warning(` ${msg}!`, {
             position: "top-right",
@@ -47,7 +51,8 @@ export default function Signup() {
             theme: "light",
             containerId: 'Warning'
         });
-    }
+    };
+
     const notifySuccess = (msg) => {
         toast.success(` ${msg}!`, {
             position: "top-right",
@@ -58,7 +63,6 @@ export default function Signup() {
             draggable: true,
             progress: undefined,
             theme: "light",
-
         });
     }
     const notifyLoading = (msg) => {
@@ -68,7 +72,7 @@ export default function Signup() {
             error: "rejected",
             containerId: 'Loading'
         });
-    }
+    };
     const validatesignup = () => {
         if (inputRef1.current.value === '') {
             inputRef1.current.focus();
@@ -100,7 +104,6 @@ export default function Signup() {
         }
         return true;
     };
-    
 
     const handleSignup = () => {
         if (validatesignup()) {
@@ -111,20 +114,19 @@ export default function Signup() {
                         "isNew": true
                     }
                 }
-            })
+            });
         }
     };
-
-
 
     const isPasswordValid = (value) => {
         return validator.isStrongPassword(value, { 
             minLength: 8, minLowercase: 1, 
             minUppercase: 1, minNumbers: 1, minSymbols: 1 
-        })
-    }
+        });
+    };
+
     const validate = (value) => { 
-  
+
         if (isPasswordValid(value)) { 
             setErrorMessage('Is Strong Password');
             setColor('green');
@@ -133,8 +135,7 @@ export default function Signup() {
             setColor('red');
         } 
         return value;
-    } 
-
+    }; 
 
     const [sendOtpQuery] = useLazyQuery(gql`
         query Query($details: sendOTPDetail!) {
@@ -146,17 +147,15 @@ export default function Signup() {
             navigate('/otpsignup', { state: { email: inputemail, password: inputpassword, name: inputname } });
         },
         onError: (error) => {
-            // console.error('Error:', error.message);
             notifyError(error.message);
         }
+    });
 
-    })
 
     return (
         <div className={styles.d1}>
             <div className={styles.parent1}>
                 <div className={styles.registrationFrom1}>
-
                     <h1 className={styles.title1}>Let's get you started!</h1>
 
                     <div className={styles.inputForm1}>
@@ -176,6 +175,7 @@ export default function Signup() {
                         </div>
                         <div className={styles.ifield1}>
                             <p>Create password</p>
+
                             <input ref={inputRef3} type="password" placeholder='Password' value={inputpassword}
                                 onChange={(e) => {
                                     setPassword(validate(e.target.value));
@@ -189,6 +189,7 @@ export default function Signup() {
                                             marginLeft: '20px'
                                         }}>{errorMessage}</span>
                                 }
+                            
                         </div>
                         <div className={styles.passwordConstraints}>
                             <p>Password must contain a minimum 8 characters</p>
@@ -222,5 +223,5 @@ export default function Signup() {
             <ToastContainer containerId="Loading" />
             <ToastContainer containerId="Success" />
         </div>
-    )
+    );
 }

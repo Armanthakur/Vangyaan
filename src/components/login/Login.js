@@ -7,18 +7,23 @@ import img from './google.png'
 import img1 from './tr.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons
 
 export default function Login() {
     const [inputpassword, setPassword] = useState("");
     const [inputemail, setEmail] = useState("");
     const [loggedIn, setLoggedIn] = useState(false);
+    const [showPassword, setShowPassword] = useState(false); // State for toggle visibility
     const navigate = useNavigate();
     const { isLoggedIn, login,logout, setUser } = useContext(AuthContext);
     const inputRef1 = useRef(null);
     const inputRef2 = useRef(null);
     const btnRef = useRef(null);
 
-    
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     const notifyError = (msg) => {
         toast.error(`${msg}!`, {
             position: "top-right",
@@ -85,13 +90,11 @@ export default function Login() {
         {
             errorPolicy: "all",
             onError: (errors) => {
-                
                 console.log('Error:', errors.message);
                 notifyError(errors.message)
             },
             onCompleted: (data) => {
                 if (data.login && data.login.token) {
-
                     const { token, ...userData } = data.login;
                     localStorage.setItem('authToken', token);
                     setUser(userData);
@@ -116,14 +119,20 @@ export default function Login() {
         <div className={styles.parent}>
             <img src={img1} alt="" />
             <div className={styles.content}>
-
                 <h1 className={styles.log}>Login</h1>
 
                 <div className={styles.ifield}>
                     <input ref={inputRef1} type="input" placeholder='Email' value={inputemail}
                         onChange={(e) => setEmail(e.target.value)} required />
-                    <input ref={inputRef2} id='input2' type="password" placeholder='password'
-                        onChange={(e) => setPassword(e.target.value)} required />
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <input ref={inputRef2} id='input2' 
+                            type={showPassword ? "text" : "password"} 
+                            placeholder='password'
+                            onChange={(e) => setPassword(e.target.value)} required />
+                        <button type="button" onClick={togglePasswordVisibility} style={{ marginLeft: '10px', border: 'none', background: 'transparent', cursor: 'pointer' }}>
+                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </button>
+                    </div>
                 </div>
 
                 <div ref={btnRef} className={styles.btn1} onClick={() => {
