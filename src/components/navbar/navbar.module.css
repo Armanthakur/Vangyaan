@@ -32,9 +32,10 @@ nav a {
     left: 82vw;
     margin-left: 0px;
     width: 269px;
-    height: 50vh;
+    height: 52vh;
     background-color: rgb(0, 130, 130);
-    border-top: 3px solid rgb(118, 253, 106);
+    border-top: 2px solid rgb(118, 253, 106);
+    border-bottom: 2px solid rgb(118, 253, 106);
     z-index: 999;
     transition: 0.5s;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.9);
@@ -100,6 +101,6 @@ nav a {
     transition: 0.5s;
     display: flex;
     /* margin-right: 500px; */
-    top: 67px;
+    top: 60px;
     display: flex;
 }
