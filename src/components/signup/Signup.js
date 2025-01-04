@@ -27,7 +27,7 @@ export default function Signup() {
     const [colorState, setColor] = useState('red');
 
     const notifyError = (msg) => {
-        toast.error(${msg}!, {
+        toast.error(`${msg}!`, {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -99,7 +99,7 @@ export default function Signup() {
             return false;
         } 
         if (!isPasswordValid(inputRef3.current.value)) {
-            notifyWarning("Please enter a strong password");
+            notifyWarning("Please enter a strong password ");
             return false;
         }
         return true;
