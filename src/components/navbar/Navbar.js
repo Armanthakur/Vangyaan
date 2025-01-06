@@ -4,6 +4,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { GrClose } from "react-icons/gr";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../services/AuthContext.js';
+
+
 function Navbar({ setTheme, theme }) {
   const [toggle, setToggle] = useState(false)
   const sideNavRef = useRef(null);
@@ -44,7 +46,9 @@ function Navbar({ setTheme, theme }) {
                   <li><Link to={'/showposts'}>Show posts</Link></li>
                   <li><Link to={'/upload'}>Contribute</Link></li>
                   <li><Link to={'/dashboard'}>Dashboard</Link></li>
+                  <li><Link to={'/Notification'}>Notification</Link></li>
                   <li><Link to={'/'} onClick={handleLogout}>Sign out</Link></li>
+
                 </>
               ) : (
                 <>
