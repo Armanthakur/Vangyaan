@@ -19,6 +19,9 @@ import SetPassword from './components/forgot password/set password/SetPassword.j
 import Profile from './components/profile/Profile.js'
 import OTPSignup from './components/signup/OtpForm.js'
 import { AuthProvider } from './services/AuthContext';
+import Notification from './components/notification/Notification';
+
+
 function App() {
   const [theme, setTheme] = useState("dark");
   return (
@@ -45,6 +48,7 @@ function App() {
           <Route path='/otp' element={<Otp></Otp>}></Route>
           <Route path='/setPass' element={<SetPassword></SetPassword>}></Route>
           <Route path='/profile' element={<Profile></Profile>}></Route>
+          <Route path='/notification' element={<Notification></Notification>}></Route>
         </Routes >
       </div>
     </div >
