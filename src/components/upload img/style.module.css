@@ -188,6 +188,26 @@
     padding-top: 10px;
 }
 
+.tt2 {
+    height:auto;
+    width: 750px;
+    background-color: rgb(64, 64, 64);
+    color: rgb(186, 186, 186);
+    resize: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+    color: white;
+    border: 0.5px solid rgba(255, 255, 255, 0.403);
+    outline: none;
+    padding-left: 20px;
+    margin: 10px 0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    
+}
+
 .tt::-webkit-scrollbar {
     display: none;
 }

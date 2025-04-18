@@ -13,7 +13,10 @@ export default function UploadImg(props) {
     const [isDragging, setIsDragging] = useState(false);
     const fileInputRef = useRef(null);
     const labelRef = useRef();
-
+    const [description, setDescription] = useState("");
+    const [location, setLocation] = useState("");
+    const [species, setSpecies] = useState("");
+    
     const notifySuccess = (msg) => {
         toast.success(`${msg}!`, {
             position: "top-right",
@@ -27,7 +30,7 @@ export default function UploadImg(props) {
             containerId: 'Success'
         });
     };
-
+    
     const notifyError = (msg) => {
         toast.error(`${msg}!`, {
             position: "top-right",
@@ -146,7 +149,6 @@ export default function UploadImg(props) {
         }
     }, [images]);
 
-    const [description, setDescription] = useState("");
 
     const createpostmut = gql`
         mutation CreatePost($details: PostCreateRequest!) {
@@ -265,10 +267,30 @@ export default function UploadImg(props) {
                         rows="5"
                         className={styles.tt}
                         placeholder="Write description.."
-                        value={description} // Bind the value to the description state
+                        value={description} // Find the value to the description state
                         onChange={(e) => setDescription(e.target.value)}
                     >
                     </textarea>
+                    <div className={styles.desc}>Location</div>
+                    <input
+                        name="txtArea"
+                        cols="10"
+                        rows="5"
+                        className={styles.tt2}
+                        placeholder="Add Location"
+                        value={location} // Find the value to the description state
+                        onChange={(e) => setLocation(e.target.value)}
+                    />
+                    <div className={styles.desc}>Species</div>
+                    <input
+                        name="txtArea"
+                        cols="10"
+                        rows="5"
+                        className={styles.tt2}
+                        placeholder="Add Species"
+                        value={species} // Find the value to the description state
+                        onChange={(e) => setSpecies(e.target.value)}
+                    />
 
                     <div className={styles.btnSection}>
                         <button className={styles.submit} onClick={() => {
@@ -279,8 +301,14 @@ export default function UploadImg(props) {
                                 notifyWarning("Please upload at least 2 images");
                             } else if (images.length > 4) {
                                 notifyWarning("You can upload a maximum of 4 images.");
+                            } else if(location.length === 0){
+                                notifyWarning("Please enter the location");
+                            } else if(species.length === 0){
+                                notifyWarning("Please enter the spieces");
                             } else {
-                                CreatePostfunc({ variables: { details: { "description": description, "images": images } } });
+                                console.log("species",species)
+                                console.log("location",location)
+                                CreatePostfunc({ variables: { details: { description, images, species, location } } });
                             }
                         }}>Submit</button>
                     </div>

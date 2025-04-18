@@ -82,6 +82,14 @@ export default function Contribute(props) {
               <p>Description</p>
               <p>{postinfo.description}</p>
             </div>
+            <div className={style.irow}>
+              <p>Location</p>
+              <p>{postinfo.location}</p>
+            </div>
+            <div className={style.irow}>
+              <p>Species</p>
+              <p>{postinfo.species}</p>
+            </div>
 
           </div>
 
