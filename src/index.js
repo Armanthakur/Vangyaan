@@ -10,7 +10,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './services/AuthContext';
 
 const httpLink = createHttpLink({
-  uri: 'https://eflora.vangyaan.com/',
+  // uri: 'https://eflora.vangyaan.com/',
+  uri: '//localhost:4000/',
 });
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists

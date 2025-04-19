@@ -6,7 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../services/AuthContext.js";
 
-function ShowPost() {
+function 
+ShowPost() {
   const [pList, setpList] = useState([]);
   const { logout } = useContext(AuthContext);
   const { state } = useLocation();
@@ -31,6 +32,8 @@ function ShowPost() {
         getPosts(details: $details) {
           createdAt
           description
+          location
+          species
           imagesLink
           postID
           postedBy
